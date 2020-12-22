@@ -1,4 +1,5 @@
 <script src="./scripts/scriptsFormulario.js"></script>
+
 <main>
 
   <section>
@@ -10,6 +11,12 @@
   <h2 class="mt-3 mb-2"><?=TITLE?></h2>
 
   <form method="post" class="row g-3">
+    
+    <div class="col-md-4">
+      <label class="form-label">CNPJ</label>
+      <input type="text" name="maskCnpj" class="form-control" id="maskCnpj"  aria-describedby="inputGroupPrepend2" required
+      onblur="maskcnpj(this, maskCnpj)" onkeypress="maskcnpj(this, maskCnpj)" size="18" maxlength="18">
+    </div>
 
     <div class="col-md-4">
       <label class="form-label">Razão Social</label>
@@ -18,13 +25,7 @@
 
     <div class="col-md-4">
       <label class="form-label">Nome Fantasia</label>
-      <input type="text" name="nome" class="form-control" id="nome" required size="200" maxlength="200">
-    </div>
-
-    <div class="col-md-4">
-      <label class="form-label">CNPJ</label>
-      <input type="text" name="maskCnpj" class="form-control" id="maskCnpj"  aria-describedby="inputGroupPrepend2" required
-      onkeypress="return event.charCode >= 48 && event.charCode <= 57" size="18" maxlength="18">
+      <input type="text" name="nome" class="form-control" id="nome" size="200" maxlength="200">
     </div>
 
     <div class="col-md-3">
@@ -34,16 +35,16 @@
 
     <div class="col-md-3">
       <label class="form-label">CNAE</label>
-      <input type="text" name="maskCnae" class="form-control" id="maskCnae" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  required>
+      <input type="text" name="maskCnae" class="form-control" id="maskCnae" onblur="maskcnae(this, maskCnae)" onkeypress="maskcnae(this, maskCnae)" required>
     </div>
 
     <div class="col-md-12">
       <div class="col-md-3">
         <p><h6>Deseja inserir observações?<h6></p>
         <label class="ml-2">Sim</label>
-				<input type="radio" class="form-check-obs ml-2" name="obs" value="sim" id="formObs" >
+				<input type="radio" class="form-check-obs ml-2" name="formObs" value="sim" id="formObs" >
         <label class="ml-2">Não</label>
-        <input type="radio" class="form-check-obs" name="obs" value="nao" id="formObs" checked>
+        <input type="radio" class="form-check-obs" name="formObs" value="nao" id="formObs" checked>
       </div>
       <div class="form-group" id="campoObservacao">
 				<label for="formObservacao">Observação</label>
@@ -71,7 +72,7 @@
 
     <div class="col-md-3">
       <label class="form-label">Numero</label>
-      <input type="text" class="form-control" name="numero" id="numero" size="8" maxlength="8" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+      <input type="text" class="form-control" name="numero" id="numero" size="6" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
     </div>
 
     <div class="col-md-5">

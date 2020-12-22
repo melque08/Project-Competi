@@ -5,12 +5,12 @@
   define('TITLE', 'Cadastrar Empresa');
   define('NAME', 'Cadastrar');
   
+  $obEmpresa = new Empresa;
 
   //Validação POST
   if(isset( $_POST['razao'], $_POST['nome'], $_POST['maskCnpj'], $_POST['phone'], $_POST['maskCnae'], $_POST['formObs'], $_POST['formObservacao'],
             $_POST['cep'], $_POST['rua'], $_POST['complemento'], $_POST['numero'], $_POST['bairro'], $_POST['cidade'], $_POST['uf'], $_POST['status'],
   )){
-    $obEmpresa = new Empresa;
     $obEmpresa->razao           = $_POST['razao'];
     $obEmpresa->nome            = $_POST['nome'];
     $obEmpresa->maskCnpj        = $_POST['maskCnpj'];

@@ -4,13 +4,15 @@
   if(isset($_GET['status'])){
     switch($_GET['status']){
       case 'success':
-        $mensagem = ' <div class="alert alert-success">Ação executada com sucesso 
-                        <button type="button" class="btn-close float-md-right" data-bs-dismiss="alert" aria-label="Close"></button>
+        $mensagem = ' <div class="alert alert-success">
+                        <span>Executado com sucesso!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
       break;
       case 'error':
-        $mensagem = ' <div class="alert alert-success">Ação não executada
-                       <button type="button" class="btn-close float-md-right" data-bs-dismiss="alert" aria-label="Close"></button>
+        $mensagem = ' <div class="alert alert-danger">
+                        <span>Ação não executada!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
       break;
     }
@@ -39,13 +41,18 @@
 
 <main>
 
-  <?=$mensagem?>
-
-  <section>
-    <a href="cadastrar.php" class="btn btn-success">
-      Cadastrar Empresa
-    </a>
-  </section>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+    <a href="cadastrar.php" class="btn btn-success">Cadastrar Empresa</a>
+    </div>
+    <div class="col-sm"></div>
+    <div class="col-sm-3">
+      <?=$mensagem?>
+    </div>
+  </div>
+</div>
+  
 
   <section>
     <table class="table bg-light mt-3">
