@@ -67,7 +67,7 @@
 
     <div class="col-md-3">
       <label class="form-label">Complemento</label>
-      <input type="text" class="form-control" name="complemento" id="complemento" size="100" maxlength="100" required>
+      <input type="text" class="form-control" name="complemento" id="complemento" size="100" maxlength="100">
     </div>
 
     <div class="col-md-3">
