@@ -160,7 +160,7 @@
     }
 
     /**
-     * Método responsável por excluir a vaga do banco
+     * Método responsável por excluir a empresa
      * @return boolean
      */
     public function  excluir(){
