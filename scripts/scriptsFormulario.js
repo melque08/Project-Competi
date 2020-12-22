@@ -1,21 +1,11 @@
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-
 /*----------------------------- Campo Observação -----------------------------*/
 
   $( document ).ready(function() {
     $("#campoObservacao").hide();
-
-    $("#formCheckObs").change(function() {
-      if(this.checked) {
+    $("body").on("click","input[name='formObs']",function() {
+      if($("input[name='formObs']:checked").val()== 'sim') {
         $("#campoObservacao").show();
-      }
-    });
-    $("#formCheckObsnao").change(function() {
-      if(this.checked) {
+      }else{
         $("#campoObservacao").hide();
       }
     });
@@ -132,7 +122,7 @@
           .replace(/\D/g, '')
           .replace(/^(\d{2})?(\d{2})?(\d{1})?(\d{2}).*/, "$1.$2-$3-$4"));
     });
-/*---------------------------- Mascara CNAE ----------------------------------*/
+/*---------------------------- Mascara CEP ----------------------------------*/
 
     $("#cep").on("keyup", function(e)
     {
@@ -141,6 +131,3 @@
           .replace(/\D/g, '')
           .replace(/^(\d{2})?(\d{3})?(\d{3})?/, "$1.$2-$3"));
     });
-
-
-</script>
