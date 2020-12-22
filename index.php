@@ -4,8 +4,9 @@
 
   use \App\entity\Empresa;
 
+  header('Access-Control-Allow-Origin');
+
   $empresas = Empresa::getEmpresas();
-  //echo "<pre>"; print_r($empresas); echo "<pre>"; exit;
 
   include __DIR__.'/includes/header.php';
   include __DIR__.'/includes/listagem.php';

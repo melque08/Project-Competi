@@ -4,15 +4,13 @@
 
   <form method="post" class="row g-3">
 
-    <div class="col-md-4">
-      
+    <div class="col-md-12">
+      <p>Você deseja realmente excluir a empresa <strong><?=$obEmpresa->razao?>?</strong></p>
     </div>
 
     <div class="col-12 mb-4">
-      <button class="btn btn-danger" type="submit">Confirmar</button>
-      <a href="index.php">
-        <button class="btn btn-primary">Cancelar</button>
-      </a>
+      <button class="btn btn-danger" name="excluido" type="submit" value="1">Confirmar</button>
+      <a href="index.php" class="btn btn-primary">Cancelar</a>
     </div>
   </form>
 
