@@ -1,12 +1,19 @@
 /*----------------------------- Campo Observação -----------------------------*/
 
   $( document ).ready(function() {
+    
     $("#campoObservacao").hide();
+    
+    if($("input[name='formObs']:checked").val() == 'sim') {
+      $("#campoObservacao").show();
+    }
+
     $("body").on("click","input[name='formObs']",function() {
-      if($("input[name='formObs']:checked").val()== 'sim') {
+      if($("input[name='formObs']:checked").val() == 'sim') {
         $("#campoObservacao").show();
       }else{
         $("#campoObservacao").hide();
+        document.getElementById('formObservacao').value=("");
       }
     });
   });
@@ -48,7 +55,12 @@
             var validacep = /^[0-9]{8}$/;
 
             //Valida o formato do CEP.
+
             if(validacep.test(cep)) {
+
+                document.getElementById('cep').value = cep.substring(0,5)
+                +"-"
+                +cep.substring(5);
 
                 //Preenche os campos com "..." enquanto consulta webservice.
                 document.getElementById('rua').value="...";
@@ -80,54 +92,84 @@
 
 /*--------------------------- Mascara telefone ------------------------------*/
 
-    function mask(o, f) {
-      setTimeout(function() {
-        var v = mphone(o.value);
-        if (v != o.value) {
-          o.value = v;
-        }
-      }, 1);
-    }
-    function mphone(v) {
-      var r = v.replace(/\D/g, "");
-      r = r.replace(/^0/, "");
-      if (r.length > 10) {
-        r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
-      } else if (r.length > 5) {
-        r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-      } else if (r.length > 2) {
-        r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
-      } else {
-        r = r.replace(/^(\d*)/, "($1");
+  function mask(o, f) {
+    setTimeout(function() {
+      var v = mphone(o.value);
+      if (v != o.value) {
+        o.value = v;
       }
-      return r;
+    }, 1);
+  }
+  function mphone(v) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^0/, "");
+    if (r.length > 10) {
+      r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+    } else if (r.length > 5) {
+      r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (r.length > 2) {
+      r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+    } else {
+      r = r.replace(/^(\d*)/, "($1");
     }
+    return r;
+  }
 
 /*---------------------------- Mascara CNPJ ---------------------------------*/
 
-    $("#maskCnpj").on("keyup", function(e)
-    {
-      $(this).val(
-          $(this).val()
-          .replace(/\D/g, '')
-          .replace(/^(\d{2})(\d{3})?(\d{3})?(\d{4})?(\d{2})?/, "$1.$2.$3/$4-$5"));
+function maskcnpj(o, f) {
+  setTimeout(function() {
+    var v = maskCnpj(o.value);
+    if (v != o.value) {
+      o.value = v;
+    }
+  }, 1);
+}
+
+function maskCnpj(v) {
+  var r = v.replace(/\D/g, "");
+  r = r.replace(/^(\d{2})(\d{3})?(\d{3})?(\d{4})?(\d{2})?/, "$1.$2.$3/$4-$5");
+  return r;
+}
+
+$(document).ready(function(){
+
+    $("input[name='maskCnpj']").change(function(){
+        var cnpj = this.value;
+        
+        if (cnpj && cnpj != '') {
+            $.post("http://localhost/Teste%20pr%C3%A1tico%20Competi/Project-Competi/buscaCnpj.php", {
+                cnpj: cnpj
+            }, function(retorno){
+              document.getElementById('razao').value=(retorno.razao_social);
+              document.getElementById('nome').value=(retorno.nome_fantasia);
+              document.getElementById('phone').value=(retorno.telefone);
+              document.getElementById('cep').value=(retorno.cep);
+              document.getElementById('rua').value=(retorno.endereco);
+              document.getElementById('cidade').value=(retorno.cidade);
+              document.getElementById('uf').value=(retorno.estado);
+              document.getElementById('bairro').value=(retorno.bairro);
+              document.getElementById('complemento').value=(retorno.complemento);
+              document.getElementById('numero').value=(retorno.numero);
+              var cnae={} = retorno.cnae[0].code;
+              document.getElementById('maskCnae').value=(cnae);
+            }, 'json');
+        }
     });
+  });
 
 /*---------------------------- Mascara CNAE ----------------------------------*/
 
-    $("#maskCnae").on("keyup", function(e)
-    {
-      $(this).val(
-          $(this).val()
-          .replace(/\D/g, '')
-          .replace(/^(\d{2})?(\d{2})?(\d{1})?(\d{2}).*/, "$1.$2-$3-$4"));
-    });
-/*---------------------------- Mascara CEP ----------------------------------*/
-
-    $("#cep").on("keyup", function(e)
-    {
-      $(this).val(
-          $(this).val()
-          .replace(/\D/g, '')
-          .replace(/^(\d{2})?(\d{3})?(\d{3})?/, "$1.$2-$3"));
-    });
+  function maskcnae(o, f) {
+    setTimeout(function() {
+      var v = maskCnae(o.value);
+      if (v != o.value) {
+        o.value = v;
+      }
+    }, 1);
+  }
+  function maskCnae(v) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^(\d{2})?(\d{2})?(\d{1})?(\d{2}).*/, "$1.$2-$3-$4");
+    return r;
+  }
