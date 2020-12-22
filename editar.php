@@ -41,6 +41,7 @@
     $obEmpresa->status          = $_POST['status'];
     $obEmpresa->atualizar();
 
+
     header('location: index.php?status=success');
     exit;
 

@@ -160,13 +160,24 @@
     }
 
     /**
+     * Método responsável por excluir a vaga do banco
+     * @return boolean
+     */
+    public function  excluir(){
+      return (new Database('cadastro_empresa'))->update('id= '.$this->id, [
+        'excluido' => $this->excluido,
+      ]);
+
+    }
+
+    /**
     * Método responsável por obter as empresas dentro do banco de Dados
     * @param string $where
     * @param string $order
     * @param string $limit
     * @return array
     */
-    public static function getEmpresas($where = null, $order = null, $limit = null){
+    public static function getEmpresas($where = 'excluido = 0', $order = null, $limit = null){
       return (new Database('cadastro_empresa'))->select($where, $order, $limit)
                                                 ->fetchAll(PDO::FETCH_CLASS,self::class);
     }

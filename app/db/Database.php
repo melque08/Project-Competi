@@ -150,6 +150,23 @@
       return true;
     }
 
+    /**
+     * Método responsável por fazer a exclusão no banco de dados
+     * @param string $where
+     * @return boolean
+     */
+    public function delete($where){
+      
+      //Monta a query
+      $query = 'DELETE FROM '.$this->table.' WHERE '.$where;
+
+      //Executa a query
+      $this->execute($query);
+
+      //Retorna sucesso
+      return true;
+    }
+
 
 
 
