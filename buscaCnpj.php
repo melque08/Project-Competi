@@ -7,7 +7,7 @@ $consulta = file_get_contents($webservice);
 $retorno = json_decode($consulta, true);
 
 if (empty($retorno)) {
-    throw new Exception('Dados não encontrados');
+    echo json_encode(['erro' => 'Dados não encontrados']);
 }
 
 if ($retorno["status"] == "OK") {
@@ -29,8 +29,8 @@ if ($retorno["status"] == "OK") {
         
         echo json_encode($empresa);
     } else {
-        throw new Exception('Dados não encontrados');
+        echo json_encode(['error' => 'Empresa está inativa!']);
     }
 } else {
-    throw new Exception($retorno["message"]);
+    echo json_encode(['status' => $retorno["message"]]);
 }

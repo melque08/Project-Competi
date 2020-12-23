@@ -141,6 +141,12 @@ $(document).ready(function(){
             $.post("http://localhost/Teste%20pr%C3%A1tico%20Competi/Project-Competi/buscaCnpj.php", {
                 cnpj: cnpj
             }, function(retorno){
+
+            if(retorno.status){
+                document.getElementById('razao').value=(retorno.status);
+            }else if(retorno.error) {
+                document.getElementById('razao').value=(retorno.error);
+             } else {
               document.getElementById('razao').value=(retorno.razao_social);
               document.getElementById('nome').value=(retorno.nome_fantasia);
               document.getElementById('phone').value=(retorno.telefone);
@@ -153,7 +159,9 @@ $(document).ready(function(){
               document.getElementById('numero').value=(retorno.numero);
               var cnae={} = retorno.cnae[0].code;
               document.getElementById('maskCnae').value=(cnae);
-            }, 'json');
+            }
+          }, 'json');
+
         }
     });
   });
