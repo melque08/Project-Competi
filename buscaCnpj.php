@@ -2,14 +2,13 @@
 
 $cnpj = preg_replace('/[^0-9]/', '', $_POST['cnpj']);
 
-
-if (empty($cnpj)) {
-    throw new Exception('Dados não encontrados');
-}
-
 $webservice = "https://www.receitaws.com.br/v1/cnpj/" . $cnpj;
 $consulta = file_get_contents($webservice);
 $retorno = json_decode($consulta, true);
+
+if (empty($retorno)) {
+    throw new Exception('Dados não encontrados');
+}
 
 if ($retorno["status"] == "OK") {
     
@@ -30,7 +29,7 @@ if ($retorno["status"] == "OK") {
         
         echo json_encode($empresa);
     } else {
-        throw new Exception("Empresa inativa!");
+        throw new Exception('Dados não encontrados');
     }
 } else {
     throw new Exception($retorno["message"]);

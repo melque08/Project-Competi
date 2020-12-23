@@ -6,7 +6,7 @@
     <a href="index.php">
       <button class="btn btn-primary">Voltar</button>
     </a>
-  </section>
+  </section>          
 
   <h2 class="mt-3 mb-2"><?=TITLE?></h2>
 
