@@ -1,7 +1,7 @@
 <?php
 
   require __DIR__.'/vendor/autoload.php';
-  use \App\entity\Empresa;
+  use \App\controller\entity\Empresa;
   define('TITLE', 'Editar Empresa');
   define('NAME', 'Salvar');
 
@@ -11,10 +11,10 @@
     exit;
   }
 
-  //Consulta da Empresa
+  //Consulta da Empresa e cria instancia de empresa
   $obEmpresa = Empresa::getEmpresa($_GET['id']);
 
-  //Validação da empresa
+  //Validação da empresa 
   if(!$obEmpresa instanceof Empresa){
     header('location: index.php?status=error');
     exit;
@@ -49,8 +49,8 @@
 
   //echo "<pre>"; print_r($_POST); echo "<pre>"; exit;
 
-  include __DIR__.'/includes/header.php';
-  include __DIR__.'/includes/formularioedit.php';
-  include __DIR__.'/includes/footer.php';
+  include __DIR__.'/app/view/includes/header.php';
+  include __DIR__.'/app/view/includes/formularioedit.php';
+  include __DIR__.'/app/view/includes/footer.php';
 
 ?>

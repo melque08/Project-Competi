@@ -19,6 +19,7 @@
   }
 
   $resultados = '';
+  // cada posição de Empresas e transformado em empresa
   foreach ($empresas as $empresa) {
     $resultados .= '<tr class="'. ($empresa->status == 'Inativa' ? 'Inativa table-danger' : '').'">
                       <td>'.$empresa->id.'</td>

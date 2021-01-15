@@ -1,7 +1,7 @@
 <?php
 
-  namespace App\entity;
-  use \App\db\Database;
+  namespace App\controller\entity;
+  use \App\model\db\Database;
   use \PDO;
 
   class Empresa{
@@ -103,6 +103,12 @@
     public $status;
 
     /**
+    * Excluir empresa
+    * @var boolean
+    */
+    public $excluido;
+
+    /**
     * Método resposavelpor cadastrar no banco
     * @return boolean
     */
@@ -171,7 +177,7 @@
     }
 
     /**
-    * Método responsável por obter as empresas dentro do banco de Dados
+    * Método responsável por obter as empresas dentro do banco de Dados para listagem
     * @param string $where
     * @param string $order
     * @param string $limit
@@ -179,16 +185,18 @@
     */
     public static function getEmpresas($where = 'excluido = 0', $order = null, $limit = null){
       return (new Database('cadastro_empresa'))->select($where, $order, $limit)
+      //Todo retorno vai ser transformado em array e no segundo param passa o tipo de array de objetos
                                                 ->fetchAll(PDO::FETCH_CLASS,self::class);
     }
 
     /**
-    * Método responsável por buscar empresas com base em seu ID
+    * Método responsável por buscar empresas com base em seu ID para edição
     * @param integer $id
     * @return Empresa
     */
     public static function getEmpresa($id){
       return (new Database('cadastro_empresa'))->select('id = '.$id)
+      //retorno do fetch unitario que retorna apenas uma posição e retorno o objeto.
                                                ->fetchObject(self::class);
     }
 

@@ -7,7 +7,7 @@
     if($("input[name='formObs']:checked").val() == 'sim') {
       $("#campoObservacao").show();
     }
-
+    
     $("body").on("click","input[name='formObs']",function() {
       if($("input[name='formObs']:checked").val() == 'sim') {
         $("#campoObservacao").show();

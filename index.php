@@ -1,15 +1,13 @@
 <?php
 
   require __DIR__.'/vendor/autoload.php';
+  use \App\controller\entity\Empresa;
 
-  use \App\entity\Empresa;
-
-  header('Access-Control-Allow-Origin');
-
+  //Obtem a listagem de empresas atraves do metodo getEmpresas
   $empresas = Empresa::getEmpresas();
 
-  include __DIR__.'/includes/header.php';
-  include __DIR__.'/includes/listagem.php';
-  include __DIR__.'/includes/footer.php';
+  include __DIR__.'/app/view/includes/header.php';
+  include __DIR__.'/app/view/includes/listagem.php';
+  include __DIR__.'/app/view/includes/footer.php';
 
 ?>

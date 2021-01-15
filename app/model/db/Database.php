@@ -1,8 +1,13 @@
 <?php
 
-  namespace App\Db;
-  use \PDO;
+  namespace App\model\Db;
+  use \PDO; //dependencia da nossa classe
   use \PDOException;
+
+  /**
+   * Classe de gerenciamento de banco de dados faz a ponte entre o nosso sistema e o banco de dados usando PDO
+   * 
+   */
 
   class Database{
 
@@ -37,7 +42,7 @@
     private $table;
 
     /**
-    * Instancia de conexão com o banco de dados
+    * Instância de conexão com o banco de dados
     * @var PDO
     */
     private $connection;
@@ -54,10 +59,10 @@
 
     /**
     * Método responsável por criar a conexão com db
-    *
     */
     private function setConnection(){
       try{
+        // quando trabalha com query no bd o pdo não trava o sistema
         $this->connection = new PDO('mysql:host='.self::HOST.';dbname='.self::NAME,self::USER,self::PASS);
         // toda vez que tiver uma sintaxe errada no db essa exception trava a execução do banco de dados
         $this->connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -92,11 +97,11 @@
     */
     public function insert($values){
 
-      //Dados da Quer
+      //Dados da Query
       $fields = array_keys($values);
       $binds = array_pad([], count($fields), '?');
 
-      //Monta a Query
+      //Monta a Query PDO valida se dados é real e se pode causar algum dano no bd
       $query = 'INSERT INTO '.$this->table.'('.implode(',',$fields).') VALUES ('.implode(',',$binds).')';
 
       //Executa o insert
@@ -118,14 +123,15 @@
     public function select($where = null, $order = null, $limit = null, $fields = '*'){
 
       //Dados da query
-      $where = strlen($where) ? 'WHERE '.$where : '';
+      $where = strlen($where) ? 'WHERE '.$where : ''; 
+      //condição alternaria para verificar se existe algum valor.
       $order = strlen($order) ? 'ORDER BY '.$order : '';
       $limit = strlen($limit) ? 'LIMIT '.$limit : '';
 
       //Monta a Query
       $query = 'SELECT '.$fields.' FROM '.$this->table.' '.$where.' '.$order.' '.$limit.' ';
 
-      //Executa a Query
+      //Executa a Query e retorna o select
       return $this->execute($query);
 
     }

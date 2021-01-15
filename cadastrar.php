@@ -1,10 +1,11 @@
 <?php
 
   require __DIR__.'/vendor/autoload.php';
-  use \App\entity\Empresa;
+  use \App\controller\entity\Empresa;
   define('TITLE', 'Cadastrar Empresa');
   define('NAME', 'Cadastrar');
   
+  //instância de empresa
   $obEmpresa = new Empresa;
 
   //Validação POST
@@ -27,6 +28,7 @@
     $obEmpresa->uf              = $_POST['uf'];
     $obEmpresa->status          = $_POST['status'];
 
+    //chama meu método cadastrar dentro da entidade empresa
     $obEmpresa->cadastrar();
 
     header('location: index.php?status=success');
@@ -36,8 +38,8 @@
 
   //echo "<pre>"; print_r($_POST); echo "<pre>"; exit;
 
-  include __DIR__.'/includes/header.php';
-  include __DIR__.'/includes/formulario.php';
-  include __DIR__.'/includes/footer.php';
+  include __DIR__.'/app/view/includes/header.php';
+  include __DIR__.'/app/view/includes/formulario.php';
+  include __DIR__.'/app/view/includes/footer.php';
 
 ?>
