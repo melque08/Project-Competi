@@ -138,7 +138,7 @@ $(document).ready(function(){
         var cnpj = this.value;
         
         if (cnpj && cnpj != '') {
-            $.post("http://localhost/Teste%20pr%C3%A1tico%20Competi/Project-Competi/buscaCnpj.php", {
+            $.post("http://localhost/Teste%20pr%C3%A1tico%20Competi/Project-Competi/app/controller/buscaCnpj.php", {
                 cnpj: cnpj
             }, function(retorno){
 

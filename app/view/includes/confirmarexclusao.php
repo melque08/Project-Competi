@@ -1,4 +1,5 @@
 <script src="./scripts/scriptsFormulario.js"></script>
+
 <main>
   <h2 class="mt-3 mb-2">Excluir Vaga</h2>
 

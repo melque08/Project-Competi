@@ -1,6 +1,6 @@
 <?php
 
-  require __DIR__.'/vendor/autoload.php';
+  require '../../vendor/autoload.php';
   use \App\controller\entity\Empresa;
 
   //Validação ID
@@ -31,8 +31,8 @@
 
   //echo "<pre>"; print_r($_POST); echo "<pre>"; exit;
 
-  include __DIR__.'/app/view/includes/header.php';
-  include __DIR__.'/app/view/includes/confirmarexclusao.php';
-  include __DIR__.'/app/view/includes/footer.php';
+  include __DIR__.'/includes/header.php';
+  include __DIR__.'/includes/confirmarexclusao.php';
+  include __DIR__.'/includes/footer.php';
 
 ?>

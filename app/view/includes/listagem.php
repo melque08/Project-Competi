@@ -70,6 +70,17 @@
         <?=$resultados?>
       </tbody>
     </table>
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Anterior</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Próximo</a>
+        </li>
+      </ul>
+    </nav>
   </section>
 
 <main>
